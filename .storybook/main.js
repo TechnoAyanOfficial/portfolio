@@ -1,18 +1,32 @@
+const { mergeConfig } = require('vite');
+const svgrPlugin = require('vite-plugin-svgr');
+const path = require('path');
+
 module.exports = {
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
-    '@storybook/addon-actions',
-    '@storybook/addon-controls',
-    '@storybook/addon-a11y',
-    '@storybook/addon-toolbars',
-    {
-      name: '@storybook/preset-create-react-app',
-      options: {
-        scriptsPackageName: '@hamishmw/react-scripts-postcss',
-      },
-    },
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
   ],
-  stories: ['../src/**/*.stories.js'],
-  core: {
-    builder: 'webpack5',
+  framework: '@storybook/react',
+  core: { builder: '@storybook/builder-vite' },
+  async viteFinal(config, { configType }) {
+    return mergeConfig(config, {
+      resolve: {
+        alias: [{ find: '@', replacement: path.resolve(__dirname, '../src') }],
+      },
+      assetsInclude: ['**/*.glb', '**/*.hdr'],
+      plugins: [
+        svgrPlugin({
+          svgrOptions: {
+            icon: false,
+          },
+        }),
+      ],
+      define: {
+        global: 'window',
+      },
+    });
   },
 };

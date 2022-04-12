@@ -1,5 +1,5 @@
-import { useRouteTransition } from 'hooks';
 import { useEffect } from 'react';
+import { useRouteTransition } from '@/hooks';
 import { usePrefersReducedMotion, usePrevious } from '.';
 
 export function useScrollRestore() {

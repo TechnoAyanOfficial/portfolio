@@ -1,6 +1,6 @@
 import './Code.css';
 
-import { useTheme } from 'components/ThemeProvider';
+import { useTheme } from '@/components/ThemeProvider';
 
 export const Code = props => {
   const theme = useTheme();
