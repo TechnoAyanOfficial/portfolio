@@ -7,7 +7,7 @@ export default defineConfig({
   root: path.resolve(__dirname, './src'),
   publicDir: path.resolve(__dirname, './public'),
   build: {
-    outDir: 'build',
+    outDir: path.resolve(__dirname, './build'),
   },
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, './src') }],

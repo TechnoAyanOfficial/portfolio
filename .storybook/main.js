@@ -24,9 +24,7 @@ module.exports = {
           },
         }),
       ],
-      define: {
-        global: 'window',
-      },
+      define: configType === 'PRODUCTION' ? config.define : { global: 'window' },
     });
   },
 };
